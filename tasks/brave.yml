@@ -1,0 +1,26 @@
+---
+
+- name: Add Brave repository public key
+  apt_key:
+    url: https://brave-browser-apt-release.s3.brave.com/brave-core.asc
+    state: present
+  become: yes
+  register: brave_repo_key
+
+- name: Add Brave repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ {{ ansible_distribution_release }} main"
+  become: yes
+  register: brave_repo
+
+- name: Update repositories
+  apt:
+    update_cache: yes
+  become: yes
+  when: brave_repo_key.changed or brave_repo.changed
+
+- name: Install Brave
+  apt:
+    name: brave-browser
+    state: present
+  become: yes

@@ -1,0 +1,3 @@
+---
+- name: Install Brave
+  import_tasks: brave.yml
