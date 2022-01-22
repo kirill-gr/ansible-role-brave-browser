@@ -2,14 +2,14 @@
 
 - name: Add Brave repository public key
   apt_key:
-    url: https://brave-browser-apt-release.s3.brave.com/brave-core.asc
+    url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
     state: present
   become: yes
   register: brave_repo_key
 
 - name: Add Brave repository
   apt_repository:
-    repo: "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ {{ ansible_distribution_release }} main"
+    repo: "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"
   become: yes
   register: brave_repo
 
