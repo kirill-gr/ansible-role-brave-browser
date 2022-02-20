@@ -1,3 +1,5 @@
 = Ansible role: Install Brave browser
 
-Designed for Ubuntu 20.04
+Designed for:
+
+- Ubuntu 20.04
